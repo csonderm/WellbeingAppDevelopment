@@ -71,16 +71,16 @@ public class PreferenceDialog extends DialogFragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Dialog dialog = PreferenceDialog.this.getDialog();
                         final EditText emailInput = (EditText) dialog.findViewById(R.id.emailEditTxt);
-                        final TextView emailMsg   = (TextView) dialog.findViewById(R.id.emailTxt);
-                        final Spinner  spinner    = (Spinner)  dialog.findViewById(R.id.languageSpinner);
+                        final TextView emailMsg = (TextView) dialog.findViewById(R.id.emailTxt);
+                        final Spinner spinner = (Spinner) dialog.findViewById(R.id.languageSpinner);
                         //added this 9/11
-                        final Spinner  spinnerOcc = (Spinner)  dialog.findViewById(R.id.occupationSpinner);
+                        final Spinner spinnerOcc = (Spinner) dialog.findViewById(R.id.occupationSpinner);
 
                         // Get preferred language
-                       /* preferred = spinner.getSelectedItem().toString();
-                        if (!preferred.equals("English")){
+                        preferred = spinner.getSelectedItem().toString();
+                        if (!preferred.equals("English")) {
                             String country_code;
-                            switch (preferred){
+                            switch (preferred) {
                                 case "English":
                                     country_code = "en_US";
                                     break;
@@ -110,12 +110,12 @@ public class PreferenceDialog extends DialogFragment {
                             android.content.res.Configuration conf = res.getConfiguration();
                             conf.locale = new Locale(country_code.toLowerCase());
                             res.updateConfiguration(conf, dm);
-                        }*/
 
-                        //Added this 9/11
-                        // Get preferred occupation
-                        occupation = spinnerOcc.getSelectedItem().toString();
-                        if (!occupation.equals("Student")){
+
+                            //Added this 9/11
+                            // Get preferred occupation
+                            occupation = spinnerOcc.getSelectedItem().toString();
+                      /*  if (!occupation.equals("Student")){
                             //String occ_code;
                             String country_code;
                             switch(occupation){
@@ -136,7 +136,7 @@ public class PreferenceDialog extends DialogFragment {
                                     break;
                                 case "Lawyer":
                                     occ_code = "La";
-                                    break;*/
+                                    break;
                                 case "Doctor":
                                     country_code = "fr_FR";
                                     break;
@@ -165,48 +165,50 @@ public class PreferenceDialog extends DialogFragment {
                             res.updateConfiguration(conf, dm);
 
                         }
+                        */
 
-                        // Get email address
-                        String email = emailInput.getText().toString();
-                        Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile( // Standard email regex
-                                "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
-                                        "\\@" +
-                                        "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
-                                        "(" +
-                                        "\\." +
-                                        "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
-                                        ")+"
-                        );
+                            // Get email address
+                            String email = emailInput.getText().toString();
+                            Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile( // Standard email regex
+                                    "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                                            "\\@" +
+                                            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                                            "(" +
+                                            "\\." +
+                                            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                                            ")+"
+                            );
 
-                        // If there's no user input, inform user
-                        if (emailInput.getText().toString().trim().length() == 0) {
-                            emailMsg.setText("\nYou must enter an email address\n\n");
-                            emailMsg.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+                            // If there's no user input, inform user
+                            if (emailInput.getText().toString().trim().length() == 0) {
+                                emailMsg.setText("\nYou must enter an email address\n\n");
+                                emailMsg.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
 
-                        // If the input string does not follow the standard email regex, inform user
-                        } else if (!EMAIL_ADDRESS_PATTERN.matcher(email).matches()) {
-                            emailMsg.setText("\nInvalid email address\n\n");
-                            emailMsg.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+                                // If the input string does not follow the standard email regex, inform user
+                            } else if (!EMAIL_ADDRESS_PATTERN.matcher(email).matches()) {
+                                emailMsg.setText("\nInvalid email address\n\n");
+                                emailMsg.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
 
-                        // Otherwise, the input email is valid and is stored in shared preferences
-                        } else {
-                            final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                            SharedPreferences.Editor edit = prefs.edit();
+                                // Otherwise, the input email is valid and is stored in shared preferences
+                            } else {
+                                final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                                SharedPreferences.Editor edit = prefs.edit();
 
-                            edit.putBoolean(getString(R.string.emailStored), Boolean.TRUE);
-                            edit.putString(getString(R.string.user_email), email);
-                            edit.commit();
+                                edit.putBoolean(getString(R.string.emailStored), Boolean.TRUE);
+                                edit.putString(getString(R.string.user_email), email);
+                                edit.commit();
 
-                            edit.putBoolean(getString(R.string.languageStored), Boolean.TRUE);
-                            edit.putString(getString(R.string.user_language), preferred);
-                            edit.commit();
+                                edit.putBoolean(getString(R.string.languageStored), Boolean.TRUE);
+                                edit.putString(getString(R.string.user_language), preferred);
+                                edit.commit();
 
-                            //added this 9/11
-                            edit.putBoolean(getString(R.string.occupationStored), Boolean.TRUE);
-                            edit.putString(getString(R.string.user_language), preferred);
-                            edit.commit();
+                                //added this 9/11
+                                edit.putBoolean(getString(R.string.occupationStored), Boolean.TRUE);
+                                edit.putString(getString(R.string.user_language), occupation);
+                                edit.commit();
 
-                            dismiss();
+                                dismiss();
+                            }
                         }
                     }
                 });

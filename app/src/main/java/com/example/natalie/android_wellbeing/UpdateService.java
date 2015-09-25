@@ -73,10 +73,10 @@ public class UpdateService extends IntentService {
         // Determine Survey Table
         //changed this to occupation
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        //String language = prefs.getString(getString(R.string.user_language), "English");
+        String language = prefs.getString(getString(R.string.user_language), "English");
         String occupation = prefs.getString(getString(R.string.user_occupation), "Student");
         String table = "SurveySummary";
-        /*switch (language) {
+        switch (language) {
             case "Français":
                 table = "French";
                 break;
@@ -88,7 +88,7 @@ public class UpdateService extends IntentService {
                 break;
             default:
                 table = "SurveySummary";
-        }*/
+        }/*
         switch (occupation) {
             case "Doctor":
                 table = "French";
@@ -103,7 +103,7 @@ public class UpdateService extends IntentService {
                 table = "SurveySummary";
         }
 
-        /* occupation
+        occupation
         String occupation = prefs.getString("user_occupation", "Student");
         String table = " ";
         switch(occupation) {

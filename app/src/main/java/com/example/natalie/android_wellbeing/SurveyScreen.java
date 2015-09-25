@@ -58,7 +58,7 @@ public class SurveyScreen extends Activity {
      private List<String>        ques_types;
      private List<Long>          tstamps;
      private List<String>        ansrs;
-     private int                 ques_ct;
+     private int                 ques_ct;       //total questions for this survey
      private int []              ans_cts;
      private int                 ques_answered_ct  = 0;
      private int                 qNo = 0;
@@ -110,7 +110,7 @@ public class SurveyScreen extends Activity {
 
             if(ques_types.get(i).equals("Slider")){
                 q_in_view[view]++;
-                if((i+1) < ques_ct && (q_in_view[view] == 3 || ques_types.get(i+1).equals("Button"))){
+                if((i+1) < ques_ct && (q_in_view[view] == 3 || !ques_types.get(i+1).equals("Slider"))){
                     view++;
                 }
             }
@@ -152,7 +152,7 @@ public class SurveyScreen extends Activity {
 
                     if(vwNo + 1 > maxVw)
                     {
-                        Intent intent = new Intent(SurveyScreen.this, FinishScreen.class);
+                        Intent intent = new Intent(SurveyScreen.this, Demographics.class);
                         updateAnsweredCount();
 
                         // Convert to object list in order to join by delimiter

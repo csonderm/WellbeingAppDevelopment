@@ -27,11 +27,7 @@
         <activity
             android:name=".StartScreen"
             android:label="@string/title_activity_start_screen" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".SurveyScreen"
@@ -64,8 +60,13 @@
         <service android:name=".Checkpoint" />
 
         <activity
-            android:name=".Occupation"
-            android:label="@string/title_activity_occupation" >
+            android:name=".Demographics"
+            android:label="@string/title_activity_demographics" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

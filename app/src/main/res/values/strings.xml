@@ -56,4 +56,7 @@
 
 
     <string name="title_activity_occupation">Occupation</string>
+    <string name="title_activity_demographics">Demographics</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
